@@ -1,0 +1,26 @@
+# La version 3 es la recomendada en Compose File
+version: "3.2"
+# Se declaran todos los servicios que se van a montar a partir de este archivo
+services:
+  php:
+    build: './php/'
+    networks:
+      - mired
+  apache:
+    build: './apache/'
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - mired
+    ports:
+      - "8080:80"
+  mysql:
+    image: mysql:5.6.40
+    networks:
+      - mired
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+# Se declaran las redes en las que se van a desplegar los contenedores
+networks:
+  mired:
