@@ -1,11 +1,11 @@
 version: "3.2"
 services:
   php:
-    image: miplanservicioslpractica.azurecr.io/php:v1
+    image: miplanserviciosofial.azurecr.io/php:v1
     networks:
       - mired
   apache:
-    image: miplanservicioslpractica.azurecr.io/apache:v1
+    image: miplanserviciosofial.azurecr.io/apache:v1
     depends_on:
       - php
       - mysql
@@ -14,7 +14,7 @@ services:
     ports:
       - "8080:80"
   mysql:
-    image: miplanservicioslpractica.azurecr.io/mysql:v1
+    image: miplanserviciosofial.azurecr.io/mysql:v1
     networks:
       - mired
     environment:
