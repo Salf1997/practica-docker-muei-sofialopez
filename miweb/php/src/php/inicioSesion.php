@@ -7,12 +7,15 @@ function find_pass($conn,$usuario,$pass){
     if(!$respuesta){
         echo json_encode(array('tipo'=> 'FALLANDO EN ENCONTRAR PASSWORD'));
     } if($user=$respuesta->fetch_assoc()) {
-        return $user;
+        if(strcmp($user['password'], $pass)){
+            return $user;
+        } else {
+            return false;
+        }
     }else{
         return false;
     }
 }
-
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])=='xmlhttprequest'){
     $conn->set_charset('utf8');
 
