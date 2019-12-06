@@ -7,7 +7,7 @@ function find_pass($conn,$usuario,$pass){
     if(!$respuesta){
         echo json_encode(array('tipo'=> 'FALLANDO EN ENCONTRAR PASSWORD'));
     } if($user=$respuesta->fetch_assoc()) {
-        if(strcmp($user['password'], $pass)){
+        if(strcmp($pass,$user['password'])){
             return $user;
         } else {
             return false;
